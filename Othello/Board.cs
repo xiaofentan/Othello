@@ -39,5 +39,20 @@
 
             board[x, y] = player;
         }
+
+        public bool IsValidMove(int x, int y)
+        {
+            if (x < 0 || x >= 8)
+            {
+                throw new ArgumentOutOfRangeException($"{nameof(x)} is out of range: {x}");
+            }
+
+            if (y < 0 || y >= 8)
+            {
+                throw new ArgumentOutOfRangeException($"{nameof(y)} is out of range: {y}");
+            }
+
+            return !board[x, y].HasValue;
+        }
     }
 }
