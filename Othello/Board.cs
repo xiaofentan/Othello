@@ -4,16 +4,31 @@
     {
         private bool?[,] board = new bool?[8, 8];
 
+        public void Initialize()
+        {
+            board[3, 3] = Players.White;
+            board[4, 3] = Players.Black;
+            board[3, 4] = Players.Black;
+            board[4, 4] = Players.White;
+        }
+
         public void Print()
         {
+            for (int x = 0; x < 8 * 2 + 1; x++)
+            {
+                Console.Write("-");
+            }
+            Console.WriteLine();
+
             for (int x = 0; x < 8; x++)
             {
+                Console.Write("|");
                 for (var y = 0; y < 8; y++)
                 {
                     bool? value = board[x, y];
                     if (!value.HasValue)
                     {
-                        Console.Write(" ");
+                        Console.Write("  ");
                     }
                     else
                     {
@@ -21,11 +36,18 @@
                     }
                 }
 
-                Console.WriteLine();
+                Console.WriteLine("\b|");
             }
+
+            for (int x = 0; x < 8 * 2 + 1; x++)
+            {
+                Console.Write("-");
+            }
+
+            Console.WriteLine();
         }
         
-        private void CheckPositionBoundary(int x, iny y)
+        private void CheckPositionBoundary(int x, int y)
         {
             if (x < 0 || x >= 8)
             {
